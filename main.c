@@ -1,19 +1,20 @@
 #include <stdio.h>
 #define altura 9
 #define largura 15
+
 char tabuleiro[altura][largura];  //Declaração do tabuleiro de jogo
 
 int i, j;              //Variáveis a usar nos for loops
 
 void imprimirTabuleiro() {                //Funcão para apresentar o tabuleiro de jogo
     for(i=1; i<=9; i++) {
-        printf(" %d ", i);
+        printf(" %d ", 10-i);
         for(j=1; j<=15; j++) {
-            printf(" %c  ", tabuleiro[i][j]);
+            printf(" %c ", tabuleiro[i][j]);
         }
         printf("\n");
     }
-    printf("    01  02  03  04  05  06  07  08  09  10  11  12  13  14  15");
+    printf("    A  B  C  D  E  F  G  H  I  J  K  L  M  N  O\n\n");
 }
 
 int invalidez = 0;     //Variável que indica se a jogada é válida
@@ -28,9 +29,16 @@ void testeValidez1() {                   //Função para testar se a jogada é v
     }
 }
 
+int npecas = 0;     //Variável que conta o nº de peças totais no tabuleiro
+
+void testeValidez2() {
+    if (npecas > 15)
+        invalidez = 1;
+}
+
 int main() {
 
-    printf("MEEC War Game\n\nPrima qualquer tecla para iniciar");
+    printf("MEEC War Game\n\nPrima qualquer tecla para iniciar\n\n");
     getchar();
 
     for(i=1; i<=9; i++) {     //Inicialização do tabuleiro de jogo
@@ -41,6 +49,11 @@ int main() {
 
     imprimirTabuleiro();
 
+    printf("Escolha o modo de jogo:\nJogador tenta descobrir as peças do computador: Escreva 1\n"
+           "Computador tenta descorir as peças do jogador: Escreva 2");
+
+    int gmode;
+    scanf("%d", &gmode);
 
     return 0;
 }
